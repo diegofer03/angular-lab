@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import {task} from '../models/task.model'
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lab',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './lab.component.html',
   styleUrl: './lab.component.css'
 })
@@ -29,14 +30,24 @@ export class LabComponent {
     }
   ])
 
-  createTask(event : Event){
-    const input = event.target as HTMLInputElement
-    const newTask = input.value
-    this.tasks.update((tasks) => [...tasks, {
-      id: Date.now(),
-      title: newTask,
-      completed: false
-    }])
+  newTask = new FormControl('', {
+    nonNullable: true,
+    validators: [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.pattern('^(?!\s*$).+')
+    ]
+  })
+
+  createTasks(){
+    if (this.newTask.valid){
+      const addTask = this.newTask.value
+      this.tasks.update((tasks) => [...tasks, {
+        id: Date.now(),
+        title: addTask,
+        completed: false
+      }])
+    }
   }
 
   ediTask(index:number){
