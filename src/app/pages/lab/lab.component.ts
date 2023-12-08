@@ -39,7 +39,7 @@ export class LabComponent {
     ]
   })
 
-  createTask(){
+  createTasks(){
     if (this.newTask.valid){
       const addTask = this.newTask.value
       this.tasks.update((tasks) => [...tasks, {
