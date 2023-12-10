@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, inject, Injector, computed, effect, signal } from '@angular/core';
 import {task, filter} from '../models/task.model'
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-lab',
@@ -13,23 +12,23 @@ import { take } from 'rxjs';
 })
 export class LabComponent {
   title = ''
-  tasks = signal<task[]>([
-    {
-      id: 1,
-      title: 'crear tasks',
-      completed: false
-    },
-    {
-      id: 2,
-      title: 'crear componentes',
-      completed: false
-    },
-    {
-      id: 3,
-      title: 'completar git',
-      completed: false
+  tasks = signal<task[]>([])
+  injector = inject(Injector);
+
+  ngOnInit(){
+    const tasksStore = localStorage.getItem('tasks')
+    if(tasksStore){
+      this.tasks.set(JSON.parse(tasksStore))
     }
-  ])
+    this.trackTask()
+  }
+
+  trackTask(){
+    effect(()=>{
+      const tasks = this.tasks()
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+    },{injector: this.injector})
+  }
 
   filter = signal<filter>('all')
 
