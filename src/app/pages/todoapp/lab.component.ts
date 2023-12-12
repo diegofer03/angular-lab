@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Injector, computed, effect, signal } from '@angular/core';
-import {task, filter} from '../models/task.model'
+import {task, filter} from '../../models/task.model'
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
