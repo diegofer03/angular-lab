@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CounterComponent } from '../../../shared/components/counter/counter.component';
+import { AudioComponent } from '../../components/audio/audio.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CounterComponent],
+  imports: [CounterComponent, AudioComponent],
   templateUrl: './about.component.html'
 })
 export class AboutComponent {
