@@ -1,7 +1,7 @@
-<div class="grid grid-cols-3 gap-8">
-  <app-product title="product" [price]="12" img="https://picsum.photos/640/640?r=22" (addedProduct)="addEvent($event)"/>
-  <app-product title="product" [price]="12" img="https://picsum.photos/640/640?r=23" (addedProduct)="addEvent($event)"/>
-  <app-product title="product" [price]="12" img="https://picsum.photos/640/640?r=24" (addedProduct)="addEvent($event)"/>
-  <app-product title="product" [price]="12" img="https://picsum.photos/640/640?r=25" (addedProduct)="addEvent($event)"/>
-  <app-product title="product" [price]="12" img="https://picsum.photos/640/640?r=26" (addedProduct)="addEvent($event)"/>
+<div class="container mx-auto">
+  <app-header/>
+  <div class="grid grid-cols-4 gap-8 mt-5">
+    <app-product *ngFor="let produc of products()" [product]="produc" (addedProduct)="addEvent($event)"/>
+  </div>
 </div>
+
