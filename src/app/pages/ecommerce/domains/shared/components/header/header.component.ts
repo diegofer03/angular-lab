@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
+  hiddeCart = signal(true)
 
+  toggleCart(){
+    this.hiddeCart.update((state) => !state)
+  }
 }
