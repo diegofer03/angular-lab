@@ -13,6 +13,7 @@ import { HeaderComponent } from '../../../shared/components/header/header.compon
 export class ListComponent {
 
   products = signal<product[]>([])
+  cart = signal<product[]>([])
 
   constructor(){
     this.products.set([
@@ -61,7 +62,7 @@ export class ListComponent {
     ])
   }
 
-  addEvent(event: Event){
-    console.log(event)
+  addEvent(event: product){
+    this.cart.update(value => [...value, event])
   }
 }

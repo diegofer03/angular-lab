@@ -15,7 +15,7 @@ export class ProductComponent {
   imgSrc: string = 'https://picsum.photos/640/640?r=' + Math.random();
 
   addToCart(){
-    this.addedProduct.emit(this.product.img)
+    this.addedProduct.emit(this.product)
   }
 
 }
