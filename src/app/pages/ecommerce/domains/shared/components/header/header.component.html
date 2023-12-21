@@ -40,7 +40,7 @@
     </div>
     <div class="flex items-center">
       <button class="p-2 border rounded relative" (click)="toggleCart()">
-        <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{ cart.length }}</div>
+        <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{ cart().length }}</div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -84,7 +84,7 @@
   </div>
     <div class="flow-root">
       <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-          <li class="py-3 sm:py-4" *ngFor="let product of cart">
+          <li class="py-3 sm:py-4" *ngFor="let product of cart()">
               <div class="flex items-center">
                   <div class="flex-shrink-0">
                       <img class="w-8 h-8 rounded-full" [src]="product.img" alt="Neil image">
