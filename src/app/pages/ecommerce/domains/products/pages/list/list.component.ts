@@ -3,8 +3,8 @@ import { ProductComponent } from '../../components/product/product.component';
 import { CommonModule } from '@angular/common';
 import {product} from 'app/models/product.model'
 import { HeaderComponent } from '../../../shared/components/header/header.component';
-import { CartService } from 'app/pages/ecommerce/services/cart.service';
-import { ProductsService } from 'app/pages/ecommerce/services/products.service';
+import { CartService } from '@services/cart.service';
+import { ProductsService } from '@services/products.service';
 
 @Component({
   selector: 'app-list',
@@ -68,8 +68,8 @@ export class ListComponent {
   ngOnInit(){
     this.productService.getProducts()
       .subscribe({
-        next: (data) => {
-          console.log(data)
+        next: (products: any ) => {
+          this.products.set(products)
         },
         error: (err) => {
           console.log(err)
