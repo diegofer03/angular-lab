@@ -6,7 +6,9 @@ export interface product {
     category: {
       id: number,
       name: string,
-      image: string
+      image: string,
+      updatedAt: string
     },
     images: string[]
+    updatedAt: string
 }
