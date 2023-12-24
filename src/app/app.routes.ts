@@ -23,5 +23,5 @@ export const appRoutes: Route[] = [
         {path: '', loadChildren: () => import('app/pages/todoapp/lab.routes')},
       ]
     },
-    {path: '**', redirectTo: 'home'},
+    {path: '**', redirectTo: ''},
 ];
