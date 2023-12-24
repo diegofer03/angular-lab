@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { AppComponent } from './app.component';
+import { LayoutComponent } from './pages/ecommerce/domains/shared/components/layout/layout.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -10,10 +11,16 @@ export const appRoutes: Route[] = [
     {path: '', pathMatch : 'full', redirectTo: ''},
     {
       path: '',
-      component: AppComponent,
+      component: LayoutComponent,
       children: [
         {path: '', loadChildren: () => import('app/pages/ecommerce/ecommerce.routes')},
-        {path: 'lab', loadChildren: () => import('app/pages/todoapp/lab.routes')},
+      ]
+    },
+    {
+      path: 'todoapp',
+      component: AppComponent,
+      children: [
+        {path: '', loadChildren: () => import('app/pages/todoapp/lab.routes')},
       ]
     },
     {path: '**', redirectTo: 'home'},
