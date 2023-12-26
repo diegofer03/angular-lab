@@ -103,11 +103,11 @@
                       </p>
                   </div>
                   <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                      {{product.price | currency}}
+                    {{product.price| currency: '$' : 'symbol' : '1.0'}}
                   </div>
               </div>
           </li>
       </ul>
     </div>
-  Total: {{ total() | currency }}
+  Total: {{ total() | currency: '$' : 'symbol' : '1.0' }}
 </div>
