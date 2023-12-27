@@ -7,12 +7,12 @@ import { ProductDetailComponent } from './domains/products/pages/product-detail/
 export default [
   {
     path: '',
-    component: ListComponent,
+    loadComponent: () => import('./domains/products/pages/list/list.component').then(m => m.ListComponent),
     title: 'Home'
   },
   {
     path: 'about',
-    component: AboutComponent,
+    loadComponent: () => import('./domains/info/pages/about/about.component').then(m => m.AboutComponent),
     title: 'About'
   },
   {
