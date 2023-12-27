@@ -1,5 +1,15 @@
-<div class="grid grid-cols-4 gap-8 mt-5">
-  <app-product *ngFor="let produc of products()" [product]="produc" (addedProduct)="addEvent($event)"/>
+<div class="flex space-x-4 mt-5">
+  <div class="w-72">
+    <ul>
+      <li >
+        <a routerLink="/">All</a>
+      </li>
+      <li *ngFor="let cate of categories()" >
+        <a routerLink="/" [queryParams]="{ categoryId : cate.id}">{{cate.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="grid grid-cols-4 gap-8 mt-5">
+    <app-product *ngFor="let produc of products()" [product]="produc" (addedProduct)="addEvent($event)"/>
+  </div>
 </div>
-
-
