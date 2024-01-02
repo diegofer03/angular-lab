@@ -11,9 +11,10 @@
         [formControl]="newTask"
         (keydown.enter)="createTasks() "
       />
+      <p>Press enter to add a new task</p>
     </div>
   </header>
-  <div class="container todoapp-wrapper">
+  <div class="container todoapp-wrapper" *ngIf="tasks().length > 0" >
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
@@ -34,7 +35,8 @@
             <label>{{task.title}}</label>
             <button (click)="deleteTask(task.id)" class="destroy"></button>
           </div>
-          <input class="edit" [formControl]="editableTask" (keydown.enter)="editTask(task.id) "/>
+          <input class="edit" type="text" [formControl]="editableTask" placeholder="Press enter to edit task" (keydown.escape)="task.editing = false" (keydown.enter)="editTask(task.id) "/>
+          <label class="edit-label" *ngIf="task.editing">Press enter to edit task</label>
         </li>
         <!-- <li class="editing">
           <div class="view">
@@ -63,7 +65,7 @@
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
-      <button class="clear-completed">Clear completed</button>
+      <button class="clear-completed" (click)="clearComplete()">Clear completed</button>
     </footer>
   </div>
 </section>
