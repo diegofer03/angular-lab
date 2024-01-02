@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './lab.component.html',
   styleUrl: './lab.component.css'
 })
-export class LabComponent {
+export default class LabComponent {
   title = ''
   tasks = signal<task[]>([])
   injector = inject(Injector);
@@ -64,7 +64,7 @@ export class LabComponent {
       const addTask = this.newTask.value
       this.tasks.update((tasks) => [...tasks, {
         id: Date.now(),
-        title: addTask,
+        title: addTask.trim(),
         completed: false
       }])
     }
@@ -88,11 +88,12 @@ export class LabComponent {
   }
 
   editTask(id:number){
-    console.log('asdasd')
-    this.tasks.update((tasks) => tasks.map((task) => {
-      if (task.id === id) return { ...task, editing: false, title: this.editableTask.value }
-      return {...task}
-    }))
+    if(this.editableTask.valid){
+      this.tasks.update((tasks) => tasks.map((task) => {
+        if (task.id === id) return { ...task, editing: false, title: this.editableTask.value.trim() }
+        return {...task}
+      }))
+    }
   }
 
   deleteTask(id : number){
@@ -101,5 +102,9 @@ export class LabComponent {
 
   changeFilter(flt: filter){
     this.filter.set(flt)
+  }
+
+  clearComplete(){
+  this.tasks.update((tasks) => tasks.filter((task) => !task.completed))
   }
 }

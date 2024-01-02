@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { LabComponent } from './lab.component';
+import LabComponent  from './lab.component';
 
 export default [
   {
     path: '',
-    component: LabComponent,
-    title: 'Lab'
+    loadComponent: () => import('./lab.component'),
+    title: 'TodoApp'
   }
 ] as Routes ;
